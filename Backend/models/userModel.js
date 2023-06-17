@@ -11,6 +11,12 @@ const modelSchema = mongoose.Schema(
     pricing: {
       type: String,
     },
+    mode: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
   },
   {
     timestamps: true,

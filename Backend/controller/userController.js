@@ -1,12 +1,14 @@
 import Course from '../models/userModel.js';
 export const createUser = (req, res) => {
-  const { id, title, class_level, pricing } = req.body;
+  const { id, title, class_level, pricing, mode, description } = req.body;
   const users = Course.find().then((users) => users);
   const newCourse = new Course({
     id,
     title,
     class_level,
     pricing,
+    mode,
+    description,
   });
   console.log(newCourse);
   newCourse
@@ -24,6 +26,7 @@ export const getAllUsers = (req, res) => {
 };
 
 export const getUser = (req, res) => {
+  console.log(req);
   const { id: userID } = req.params;
   Course.findById(userID)
     .then((user) => res.status(200).json({ user }))
@@ -37,6 +40,8 @@ export const updateUser = (req, res) => {
       user.title = req.body.title;
       user.class_level = req.body.class_level;
       user.pricing = req.body.pricing;
+      user.mode = req.body.mode;
+      user.description = req.body.description;
 
       user
         .save()
